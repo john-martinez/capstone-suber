@@ -1,0 +1,7 @@
+@import './animations.scss';
+@mixin motion {
+    animation-name: moving;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
