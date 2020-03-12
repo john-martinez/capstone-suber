@@ -3,6 +3,7 @@
     height: 100%;
     @include motion;
     transform: translateY(-100px);
+    &--paused { animation-play-state: paused }
     > * { 
         background-color: orange; 
         width: 10px;

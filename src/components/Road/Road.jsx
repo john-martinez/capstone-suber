@@ -5,21 +5,22 @@ import Car from '../Car/Car';
 import RoadLines from '../RoadLines/RoadLines';
 
 export default class Road extends Component {
-  state = {roadSize: ""}
+  state = {roadSize: "", crashed: false}
   componentDidMount(){
     this.setState({roadSize: this.refs.road.offsetWidth})
   }
 
-  componentDidUpdate(_,prevState){
-    console.log(this.state)
+  crashed = () => this.setState({crashed: true});
+  shouldComponentUpdate(){
+    return !this.state.crashed;
   }
   render(){
     return(
         <div className="road" ref="road" >
-          <RoadLines />
-          <RoadLines />
-          <RoadLines />
-          <Car roadSize={this.state.roadSize} />
+          <RoadLines crashed={this.state.crashed} />
+          <RoadLines crashed={this.state.crashed} />
+          <RoadLines crashed={this.state.crashed} />
+          <Car roadSize={this.state.roadSize} crashed={this.crashed} />
         </div>
     );
   }

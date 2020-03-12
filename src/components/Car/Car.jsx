@@ -34,8 +34,10 @@ export default class Car extends Component {
         let { car } = this.refs;
         car.style.left = this.state.left;
         car.style.bottom = this.state.bottom;
-        console.log(parseInt(this.state.left.split("px")[0]) + 25 < 0 ? 'CRASHED' : 'still good');
-        console.log(parseInt(this.state.left.split("px")[0]) + 30 > this.props.roadSize ? 'CRASHED' : 'still good');
+        console.log(parseInt(this.state.left.split("px")[0]) + 25 < 0 || 
+        parseInt(this.state.left.split("px")[0]) + 30 > this.props.roadSize 
+        ? this.props.crashed() 
+        : 'still good');
       }
     render(){
       console.log(this.props.roadSize);
