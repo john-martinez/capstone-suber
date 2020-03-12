@@ -16,16 +16,16 @@ export default class Car extends Component {
         this.setState({left, bottom});
         document.addEventListener('keypress', e=>{
           switch(e.key.toLowerCase()){
-            case 'a': this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 30}px`})
+            case 'a': this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 50}px`})
                     break;
     
-            case 'w': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 30}px`})
+            case 'w': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 50}px`})
                     break;
     
-            case 'd': this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 30}px`})
+            case 'd': this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 50}px`})
                     break;
     
-            case 's': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 30}px`})
+            case 's': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 50}px`})
                     break;
           }
         })
@@ -34,8 +34,11 @@ export default class Car extends Component {
         let { car } = this.refs;
         car.style.left = this.state.left;
         car.style.bottom = this.state.bottom;
+        console.log(parseInt(this.state.left.split("px")[0]) + 25 < 0 ? 'CRASHED' : 'still good');
+        console.log(parseInt(this.state.left.split("px")[0]) + 30 > this.props.roadSize ? 'CRASHED' : 'still good');
       }
     render(){
+      console.log(this.props.roadSize);
         return (
             <div className="car" ref="car" id="#car">
                 <img src={yellowCar} alt="main-car" className="car__image"/>
