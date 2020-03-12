@@ -1,0 +1,12 @@
+@import '../../styles/mixins';
+.road__lines {
+    height: 100%;
+    @include motion;
+    transform: translateY(-100px);
+    > * { 
+        background-color: orange; 
+        width: 10px;
+        height: 80px;
+        margin-bottom: 70px;
+    }
+}
