@@ -16,16 +16,16 @@ export default class Car extends Component {
         this.setState({left, bottom});
         document.addEventListener('keypress', e=>{
           switch(e.key.toLowerCase()){
-            case 'a': this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 50}px`})
+            case 'a': this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 40}px`})
                     break;
     
-            case 'w': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 50}px`})
+            case 'w': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 40}px`})
                     break;
     
-            case 'd': this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 50}px`})
+            case 'd': this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 40}px`})
                     break;
     
-            case 's': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 50}px`})
+            case 's': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 40}px`})
                     break;
           }
         })
