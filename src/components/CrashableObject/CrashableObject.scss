@@ -1,0 +1,7 @@
+.crashable {
+    height: auto;
+    width: 40px;
+    position: absolute;
+    transition: .1s linear;
+    &__img { height: 100%; width: 100% }
+}

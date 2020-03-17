@@ -1,10 +1,9 @@
 .car {
     position: absolute;
     transition: .1s linear;
-    bottom: 5%;
+    bottom: 20px ;
     left: 50%;
-    width: 100px;
+    width: 40px;
     height: auto;
-    transform: rotate(-90deg);
     &__image { width: 100%; height: auto; }
 }
