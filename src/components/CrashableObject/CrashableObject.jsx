@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CrashableObject.scss';
-import blueCar from '../../assets/images/blue-car.png'
+
 
 export default class CrashableObject extends Component {
     state = { left: this.props.left, bottom: this.props.bottom }
@@ -44,7 +44,7 @@ export default class CrashableObject extends Component {
     render(){
         return (
             <div className={`crashable ${this.props.objName}`}>
-                <img src={blueCar} alt="blue-car" className="crashable__img" />
+                <img src={this.props.img} alt="blue-car" className="crashable__img" />
             </div>
         );
     }

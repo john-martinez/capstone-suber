@@ -10,38 +10,38 @@ export default class Car extends Component {
         return getComputedStyle(elem,null).getPropertyValue(property);
     }
 
+    turnLeft = () => this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 40}px`})
+    turnRight = () => this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 40}px`})
+    goStraight = () => this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 40}px`})
+    goBack = () => this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 40}px`})
+
     componentDidMount(){
         let left = this.getCssProperty("car", "left");
         let bottom = this.getCssProperty("car", "bottom");
         this.setState({left, bottom});
         document.addEventListener('keypress', e=>{
           switch(e.key.toLowerCase()){
-            case 'a': this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 40}px`})
+            case 'a': this.turnLeft();
               break;
 
-            case 'w': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 40}px`})
+            case 'w': this.goStraight();
               break;
     
-            case 'd': this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 40}px`})
+            case 'd': this.turnRight();
               break;
     
-            case 's': this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 40}px`})
+            case 's': this.goBack();
               break;
           }
         })
       }
       componentDidUpdate(_, prevState){
         let { car } = this.refs;
-        
-
-        
         car.style.left = this.state.left;
         car.style.bottom = this.state.bottom;
-        console.log(parseInt(this.state.left.split("px")[0]) + 25 < 0 || 
-        parseInt(this.state.left.split("px")[0]) + 30 > this.props.roadSize 
-        ? this.props.crashed() 
-        : 'still good');
-
+        if ( parseInt(this.state.left.split("px")[0]) + 25 < 0 || 
+          parseInt(this.state.left.split("px")[0]) + 30 > this.props.roadSize )
+          this.props.crashed();
     }
     render(){       
         return (
