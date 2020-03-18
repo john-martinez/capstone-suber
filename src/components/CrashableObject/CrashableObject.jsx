@@ -11,6 +11,8 @@ export default class CrashableObject extends Component {
             this.setState({ bottom: bottom + "px" })
     } 
     componentDidUpdate(_,prevState){
+        let obj = document.querySelector(`.${this.props.objName}`);
+        if (this.state.bottom.split('px')[0] >= 700){ obj.style.display = "block"; }
         let car = document.querySelector('#car');
         let obsLeft = parseInt(this.state.left.split('px')[0]);
         let obsBottom =  parseInt(this.state.bottom.split('px')[0]);
@@ -24,10 +26,13 @@ export default class CrashableObject extends Component {
 
         if ( carTop < obsBottom || carLeft > obsRight || carRight < obsLeft || carBottom > obsTop) 
             a = '';
-        else 
-          this.props.crashed();
+        else {
+            this.props.crashed();
+            obj.style.display = "none";
+        }
 
-        let obj = document.querySelector(`.${this.props.objName}`);
+        
+
         if (obj){
             let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 30;
             let left = "";
@@ -36,6 +41,7 @@ export default class CrashableObject extends Component {
             if (newBottom < -100){
                 newBottom = this.props.bottom.split('px')[0];
                 left = Math.floor(Math.random()*400) + "px";
+                obj.style.display = 'none';
             }
             setTimeout(()=>this.handler(newBottom, left), 50)
         } 

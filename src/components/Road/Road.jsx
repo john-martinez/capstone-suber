@@ -22,13 +22,20 @@ export default class Road extends Component {
 
   crashed = () => this.setState({ crashed: true });
   intoxicated = () =>  {
-    this.setState({intoxicated: 15 })
+    this.setState({intoxicated: 10 })
     clearInterval(this.intervalId);
-    this.intervalId = setInterval(()=>this.setState({ intoxicated: this.state.intoxicated - 1 }), 1000);
+    this.intervalId = setInterval(()=>{
+      if (this.state.intoxicated !== 0)
+       this.setState({ intoxicated: this.state.intoxicated - 1 })
+      else {
+        clearInterval(this.intervalId);
+        this.setState({ intoxicated: 0})
+      } 
+    }, 1000);
   }
 
   shouldComponentUpdate(_,nextState){
-    console.log(this.state);
+    console.log(this.state)
     if (this.state.crashed === false && nextState.crashed === true)
       return true;
     if (this.state.crashed)
@@ -40,18 +47,22 @@ export default class Road extends Component {
 
   render(){
     return(
-        <div className="road" ref="road" >
+        <div className={`road ${this.state.intoxicated !== 0 ? "road--blurred" : '' }`} ref="road" >
           <RoadLines crashed={this.state.crashed} />
           <RoadLines crashed={this.state.crashed} />
           <RoadLines crashed={this.state.crashed} />
-          <Car roadSize={this.state.roadSize} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
+          <Car intoxicated={this.state.intoxicated} roadSize={this.state.roadSize} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
           <CrashableObject left={"150px"} bottom={"700px"} objName="car2" crashed={this.crashed} img={blueCar}/>
           <CrashableObject left={"50px"} bottom={"900px"} objName="car3" crashed={this.crashed}  img={blueCar}/>
           <CrashableObject left={"150px"} bottom={"1150px"} objName="car4" crashed={this.crashed}  img={blueCar}/>
           <CrashableObject left={"300px"} bottom={"1350px"} objName="car5" crashed={this.crashed}  img={blueCar}/>
-          <CrashableObject left={"50px"} bottom={"1650px"} objName="car7" crashed={this.crashed}  img={blueCar}/>
-          <CrashableObject left={"350px"} bottom={"1800px"} objName="car8" crashed={this.intoxicated}  img={booze}/>
-          <Score crashed={this.state.crashed} intoxicated={this.state.intoxicated}/>
+          <CrashableObject left={"50px"} bottom={"1650px"} objName="car6" crashed={this.crashed}  img={blueCar}/>
+          <CrashableObject left={"0px"} bottom={"1100px"} objName="car7" crashed={this.crashed}  img={blueCar}/>
+          <CrashableObject left={"50px"} bottom={"1000px"} objName="car8" crashed={this.crashed}  img={blueCar}/>
+          <CrashableObject left={"350px"} bottom={"800px"} objName="booze1" crashed={this.intoxicated}  img={booze}/>
+          <CrashableObject left={"350px"} bottom={"1800px"} objName="booze2" crashed={this.intoxicated}  img={booze}/>
+
+          <Score crashed={this.state.crashed} />
         </div>
     );
   }

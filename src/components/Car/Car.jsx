@@ -21,21 +21,22 @@ export default class Car extends Component {
         this.setState({left, bottom});
         document.addEventListener('keypress', e=>{
           switch(e.key.toLowerCase()){
-            case 'a': this.turnLeft();
+            case 'a': this.props.intoxicated > 0 ? this.turnRight() : this.turnLeft();
               break;
 
-            case 'w': this.goStraight();
+            case 'w': this.props.intoxicated > 0 ? this.goBack() : this.goStraight();
               break;
     
-            case 'd': this.turnRight();
+            case 'd': this.props.intoxicated > 0 ? this.turnLeft() : this.turnRight();
               break;
     
-            case 's': this.goBack();
+            case 's':  this.props.intoxicated > 0 ? this.goStraight() : this.goBack();
               break;
           }
         })
       }
       componentDidUpdate(_, prevState){
+        console.log(this.props.intoxicated)
         let { car } = this.refs;
         car.style.left = this.state.left;
         car.style.bottom = this.state.bottom;
