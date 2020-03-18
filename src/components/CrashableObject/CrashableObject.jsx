@@ -15,7 +15,7 @@ export default class CrashableObject extends Component {
         if (this.state.bottom.split('px')[0] >= 700){ obj.style.display = "block"; }
         let car = document.querySelector('#car');
         let obsLeft = parseInt(this.state.left.split('px')[0]);
-        let obsBottom =  parseInt(this.state.bottom.split('px')[0]);
+        let obsBottom =  parseInt(this.state.bottom.split('px')[0]) + 30;
         let obsTop = obsBottom + 50;
         let obsRight = obsLeft + 40;
         let carLeft = parseInt(car.style.left.split("px")[0]);

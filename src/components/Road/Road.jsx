@@ -14,7 +14,6 @@ export default class Road extends Component {
     crashed: false, 
     intoxicated: 0
   }
-  
   intervalId = 0;
   componentDidMount(){
     this.setState({ roadSize: this.refs.road.offsetWidth })
@@ -22,7 +21,7 @@ export default class Road extends Component {
 
   crashed = () => this.setState({ crashed: true });
   intoxicated = () =>  {
-    this.setState({intoxicated: 10 })
+    this.setState({intoxicated: 10})
     clearInterval(this.intervalId);
     this.intervalId = setInterval(()=>{
       if (this.state.intoxicated !== 0)
@@ -35,7 +34,6 @@ export default class Road extends Component {
   }
 
   shouldComponentUpdate(_,nextState){
-    console.log(this.state)
     if (this.state.crashed === false && nextState.crashed === true)
       return true;
     if (this.state.crashed)
@@ -61,8 +59,7 @@ export default class Road extends Component {
           <CrashableObject left={"50px"} bottom={"1000px"} objName="car8" crashed={this.crashed}  img={blueCar}/>
           <CrashableObject left={"350px"} bottom={"800px"} objName="booze1" crashed={this.intoxicated}  img={booze}/>
           <CrashableObject left={"350px"} bottom={"1800px"} objName="booze2" crashed={this.intoxicated}  img={booze}/>
-
-          <Score crashed={this.state.crashed} />
+          <Score crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
         </div>
     );
   }
