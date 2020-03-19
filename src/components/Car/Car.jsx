@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import yellowCar from '../../assets/images/car-yellow.png';
 import './Car.scss';
 
 export default class Car extends Component {
@@ -10,10 +9,27 @@ export default class Car extends Component {
         return getComputedStyle(elem,null).getPropertyValue(property);
     }
 
-    turnLeft = () => this.setState({left: `${parseInt(this.state.left.split('px')[0]) - 5}px`})
-    turnRight = () => this.setState({left: `${parseInt(this.state.left.split('px')[0]) + 5}px`})
-    goStraight = () => this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) + 5}px`})
-    goBack = () => this.setState({bottom: `${parseInt(this.state.bottom.split('px')[0]) - 5}px`})
+    turnLeft = () => {
+      let left = `${parseInt(this.state.left.split('px')[0]) - 5}px`;
+      if (parseInt(this.state.left.split('px')[0]) - 5 < 0) left = "0px";
+      this.setState({left})
+    }
+    turnRight = () => {
+      let left = `${parseInt(this.state.left.split('px')[0]) + 5}px`;
+      if (parseInt(this.state.left.split('px')[0]) + 5 > 440) left = "440px";
+      this.setState({left})
+    }
+    goStraight = () => {
+      let roadHeight = document.querySelector('.road').offsetHeight;
+      let bottom = `${parseInt(this.state.bottom.split('px')[0]) + 5}px`
+      if (parseInt(this.state.bottom.split('px')[0]) + 5 > roadHeight - 90) bottom = `${roadHeight-90}px`;
+      this.setState({bottom})
+    } 
+    goBack = () =>{
+      let bottom = `${parseInt(this.state.bottom.split('px')[0]) - 5}px`
+      if (parseInt(this.state.bottom.split('px')[0]) - 5 < 0) bottom = "0px";
+      this.setState({bottom})
+    }
 
     componentDidMount(){
         let left = this.getCssProperty("car", "left");
@@ -50,7 +66,7 @@ export default class Car extends Component {
     render(){       
         return (
             <div className="car" ref="car" id="car">
-                <img src={yellowCar} alt="main-car" className="car__image"/>
+                <img src={this.props.img} alt="main-car" className="car__image"/>
             </div>
         )
     }

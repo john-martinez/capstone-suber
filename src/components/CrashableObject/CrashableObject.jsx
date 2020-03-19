@@ -31,10 +31,8 @@ export default class CrashableObject extends Component {
             obj.style.display = "none";
         }
 
-        
-
         if (obj){
-            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 30;
+            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 50;
             let left = "";
             obj.style.left = this.state.left;
             obj.style.bottom = this.state.bottom;

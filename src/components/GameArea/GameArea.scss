@@ -3,4 +3,22 @@
     height: 100%;
     flex: 1 1 70%;
     background-color: blue;
+    background-image: url('../../assets/images/bg.jpg');
+    background-position: center;
+
+    &__overlay { 
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('../../assets/images/cracked.png');
+        background-size: cover;
+        background-position: center;
+    }
+    &__text {
+        color: white;
+        font-size: 3.5rem;
+        text-align: center;
+    }
 }

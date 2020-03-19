@@ -1,10 +1,12 @@
 .road {
     position: relative;
-    width: 70%;
+    width: 500px;
     height: 100%;
     margin: 0 auto;
     background-color: gray;
     display: flex;
     justify-content: space-evenly;
     &--blurred { filter: blur(3px) }
+    border-left: 10px solid white;
+    border-right: 10px solid white;
 }
