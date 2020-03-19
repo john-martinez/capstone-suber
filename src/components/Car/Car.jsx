@@ -11,23 +11,23 @@ export default class Car extends Component {
 
     turnLeft = () => {
       let left = `${parseInt(this.state.left.split('px')[0]) - 5}px`;
-      if (parseInt(this.state.left.split('px')[0]) - 5 < 0) left = "0px";
+      if (parseInt(this.state.left.split('px')[0]) - 7 < 0) left = "0px";
       this.setState({left})
     }
     turnRight = () => {
       let left = `${parseInt(this.state.left.split('px')[0]) + 5}px`;
-      if (parseInt(this.state.left.split('px')[0]) + 5 > 440) left = "440px";
+      if (parseInt(this.state.left.split('px')[0]) + 7 > 440) left = "440px";
       this.setState({left})
     }
     goStraight = () => {
       let roadHeight = document.querySelector('.road').offsetHeight;
       let bottom = `${parseInt(this.state.bottom.split('px')[0]) + 5}px`
-      if (parseInt(this.state.bottom.split('px')[0]) + 5 > roadHeight - 90) bottom = `${roadHeight-90}px`;
+      if (parseInt(this.state.bottom.split('px')[0]) + 7 > roadHeight - 90) bottom = `${roadHeight-90}px`;
       this.setState({bottom})
     } 
     goBack = () =>{
       let bottom = `${parseInt(this.state.bottom.split('px')[0]) - 5}px`
-      if (parseInt(this.state.bottom.split('px')[0]) - 5 < 0) bottom = "0px";
+      if (parseInt(this.state.bottom.split('px')[0]) - 7 < 0) bottom = "0px";
       this.setState({bottom})
     }
 

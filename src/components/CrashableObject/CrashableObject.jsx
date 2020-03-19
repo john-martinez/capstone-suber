@@ -32,13 +32,13 @@ export default class CrashableObject extends Component {
         }
 
         if (obj){
-            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 50;
+            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 40;
             let left = "";
             obj.style.left = this.state.left;
             obj.style.bottom = this.state.bottom;
             if (newBottom < -100){
                 newBottom = this.props.bottom.split('px')[0];
-                left = Math.floor(Math.random()*400) + "px";
+                left = Math.floor(Math.random()*430) + "px";
                 obj.style.display = 'none';
             }
             setTimeout(()=>this.handler(newBottom, left), 50)

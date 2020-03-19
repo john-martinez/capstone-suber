@@ -8,6 +8,9 @@ export default class Score extends Component {
         setInterval(()=>this.setState({score: this.state.score + 1}), 100)
     }
 
+    componentDidUpdate(_,nextState){ 
+        if (this.props.crashed) this.props.handler(this.state.score);
+    }
     shouldComponentUpdate(_,prevProps){
         return !this.props.crashed;
     }

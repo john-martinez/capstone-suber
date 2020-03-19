@@ -11,24 +11,23 @@ import police from '../../assets/images/police-car.png';
 import booze from '../../assets/images/booze.png';
 import drive from '../../assets/sounds/drivingCutz.mp3';
 import yellowCar from '../../assets/images/car-yellow.png';
-// import dead from '../../assets/images/dead.jpg';
+import { isCompositeComponent } from 'react-dom/test-utils';
  
 export default class Road extends Component {
-  state = {
-    roadSize: "", 
+  state = { 
     crashed: false, 
     intoxicated: 0
   }
   intervalId = 0;
   audio = "";
   componentDidMount(){
-    this.setState({ roadSize: this.refs.road.offsetWidth })
     this.audio = new Audio(drive);
     this.playSound();
     this.audio.addEventListener('ended', ()=>{
       this.audio.currentTime = 1;
       this.audio.play(); 
     }, false)
+    this.forceUpdate(); // to initialize game
   }
 
   componentDidUpdate(){
@@ -69,7 +68,7 @@ export default class Road extends Component {
           <RoadLines crashed={this.state.crashed} />
           <RoadLines crashed={this.state.crashed} />
           <RoadLines crashed={this.state.crashed} />
-          <Car intoxicated={this.state.intoxicated} img={yellowCar} roadSize={this.state.roadSize} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
+          <Car intoxicated={this.state.intoxicated} img={yellowCar} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
           <CrashableObject left={"150px"} bottom={"700px"} objName="car2" crashed={this.crashed} img={police}/>
           <CrashableObject left={"50px"} bottom={"900px"} objName="car3" crashed={this.crashed}  img={greenCar}/>
           <CrashableObject left={"150px"} bottom={"1150px"} objName="car4" crashed={this.crashed}  img={blueCar}/>
@@ -79,7 +78,7 @@ export default class Road extends Component {
           <CrashableObject left={"50px"} bottom={"1000px"} objName="car8" crashed={this.crashed}  img={greenCar}/>
           <CrashableObject left={"350px"} bottom={"800px"} objName="booze1" crashed={this.intoxicated}  img={booze}/>
           <CrashableObject left={"350px"} bottom={"1800px"} objName="booze2" crashed={this.intoxicated}  img={booze}/>
-          <Score crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
+          <Score handler={this.props.scoreHandler} crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
         </div>
     );
   }
