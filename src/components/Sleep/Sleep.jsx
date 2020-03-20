@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SleepBar from '../SleepBar/SleepBar';
 import './Sleep.scss';
 
 export default class Sleep extends Component {
@@ -30,10 +31,13 @@ export default class Sleep extends Component {
 
     render(){
         return(
-            <div className="sleep" ref="eye">
-                <div className={`sleep__top ${ this.isSleepy() ? 'sleep--blink': '' }`}></div>
-                <div className={`sleep__bottom ${this.isSleepy() ? 'sleep--blink': '' }`}></div>
-            </div>
+            <>
+                <div className="sleep" ref="eye">
+                    <div className={`sleep__top ${ this.isSleepy() ? 'sleep--blink': '' }`}></div>
+                    <div className={`sleep__bottom ${this.isSleepy() ? 'sleep--blink': '' }`}></div>
+                </div>
+                <SleepBar sleep={this.state.sleep}/>
+            </>
         );
     }
 }
