@@ -28,7 +28,7 @@ export default class Road extends Component {
       this.audio.currentTime = 1;
       this.audio.play(); 
     }, false)
-    this.forceUpdate(); // to initialize game
+    this.forceUpdate() // initialize game
   }
 
   componentDidUpdate(){
@@ -63,25 +63,26 @@ export default class Road extends Component {
 
   playSound = () => {this.audio.play() }
   render(){
+    let roadHeight = 0;
     if (this.state.crashed) this.props.handler();
     return(
-        <div className={`road ${this.state.intoxicated !== 0 ? "road--blurred" : '' }`} ref="road" >
-          <RoadLines crashed={this.state.crashed} />
-          <RoadLines crashed={this.state.crashed} />
-          <RoadLines crashed={this.state.crashed} />
-          <Car intoxicated={this.state.intoxicated} img={yellowCar} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
-          <CrashableObject left={"150px"} bottom={"700px"} objName="car2" crashed={this.crashed} img={police}/>
-          <CrashableObject left={"50px"} bottom={"900px"} objName="car3" crashed={this.crashed}  img={greenCar}/>
-          <CrashableObject left={"150px"} bottom={"1150px"} objName="car4" crashed={this.crashed}  img={blueCar}/>
-          <CrashableObject left={"300px"} bottom={"1350px"} objName="car5" crashed={this.crashed}  img={greenCar}/>
-          <CrashableObject left={"50px"} bottom={"1650px"} objName="car6" crashed={this.crashed}  img={police}/>
-          <CrashableObject left={"0px"} bottom={"1100px"} objName="car7" crashed={this.crashed}  img={blueCar}/>
-          <CrashableObject left={"50px"} bottom={"1000px"} objName="car8" crashed={this.crashed}  img={greenCar}/>
-          <CrashableObject left={"350px"} bottom={"800px"} objName="booze1" crashed={this.intoxicated}  img={booze}/>
-          <CrashableObject left={"350px"} bottom={"1800px"} objName="booze2" crashed={this.intoxicated}  img={booze}/>
-          <Score handler={this.props.scoreHandler} crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
-          <Sleep />
-        </div>
+      <div className={`road ${this.state.intoxicated !== 0 ? "road--blurred" : '' }`} ref="road" >
+        <RoadLines crashed={this.state.crashed} />
+        <RoadLines crashed={this.state.crashed} />
+        <RoadLines crashed={this.state.crashed} />
+        <Car intoxicated={this.state.intoxicated} img={yellowCar} crashed={this.crashed} crashableObj={this.state.otherCar1}/>       
+        <CrashableObject left={"150px"} bottom={`${window.innerHeight + 700}px`} objName="car2" crashed={this.crashed} img={police}/>
+        <CrashableObject left={"50px"} bottom={`${window.innerHeight + 900}px`} objName="car3" crashed={this.crashed}  img={greenCar}/>
+        <CrashableObject left={"150px"} bottom={`${window.innerHeight + 1150}px`} objName="car4" crashed={this.crashed}  img={blueCar}/>
+        <CrashableObject left={"300px"} bottom={`${window.innerHeight + 1350}px`} objName="car5" crashed={this.crashed}  img={greenCar}/>
+        <CrashableObject left={"50px"} bottom={`${window.innerHeight + 1650}px`} objName="car6" crashed={this.crashed}  img={police}/>
+        <CrashableObject left={"0px"} bottom={`${window.innerHeight + 1100}px`} objName="car7" crashed={this.crashed}  img={blueCar}/>
+        <CrashableObject left={"50px"} bottom={`${window.innerHeight + 1000}px`} objName="car8" crashed={this.crashed}  img={greenCar}/>
+        <CrashableObject left={"350px"} bottom={`${window.innerHeight + 800}px`} objName="booze1" crashed={this.intoxicated}  img={booze}/>
+        <CrashableObject left={"350px"} bottom={`${window.innerHeight + 1800}px`} objName="booze2" crashed={this.intoxicated}  img={booze}/>
+        <Score handler={this.props.scoreHandler} crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
+        <Sleep />
+      </div>
     );
   }
 }
