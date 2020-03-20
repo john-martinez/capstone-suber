@@ -1,3 +1,4 @@
+@import '../../styles/animations';
 .sleep {
     transition: .3s ease-in-out;
     position: fixed;
@@ -24,8 +25,3 @@
     animation-timing-function: ease-in-out;
   }
 }
-
-  @keyframes blink {
-    from, to {height: 0px}
-    50% {height: 50%}
-  }

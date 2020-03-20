@@ -3,13 +3,22 @@ import './CrashableObject.scss';
 
 
 export default class CrashableObject extends Component {
-    state = { left: this.props.left, bottom: this.props.bottom }
+    state = { left: this.props.left, bottom: this.props.bottom}
     handler = (bottom, left="") => {
         if (left){
             this.setState({ bottom: bottom + "px", left })
         } else 
             this.setState({ bottom: bottom + "px" })
     } 
+
+    gameTime = 0;
+    speed = 15;
+    componentDidMount(){
+        setInterval(()=>{
+            this.gameTime++;
+            if (this.gameTime % 5 === 0) this.speed++;
+        }, 1000)
+    }
     componentDidUpdate(_,prevState){
         let obj = document.querySelector(`.${this.props.objName}`);
         if (this.state.bottom.split('px')[0] >= 700){ obj.style.display = "block"; }
@@ -32,7 +41,7 @@ export default class CrashableObject extends Component {
         }
 
         if (obj){
-            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - 40;
+            let newBottom =  parseInt(obj.style.bottom.split('px')[0]) - this.speed;
             let left = "";
             obj.style.left = this.state.left;
             obj.style.bottom = this.state.bottom;
