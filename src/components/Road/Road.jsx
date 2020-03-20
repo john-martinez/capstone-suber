@@ -3,6 +3,7 @@ import '../RoadLines/RoadLines';
 import './Road.scss';
 import Car from '../Car/Car';
 import CrashableObject from '../CrashableObject/CrashableObject';
+import Sleep from '../Sleep/Sleep';
 import Score from '../Score/Score';
 import RoadLines from '../RoadLines/RoadLines';
 import blueCar from '../../assets/images/blue-car.png';
@@ -79,6 +80,7 @@ export default class Road extends Component {
           <CrashableObject left={"350px"} bottom={"800px"} objName="booze1" crashed={this.intoxicated}  img={booze}/>
           <CrashableObject left={"350px"} bottom={"1800px"} objName="booze2" crashed={this.intoxicated}  img={booze}/>
           <Score handler={this.props.scoreHandler} crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
+          <Sleep />
         </div>
     );
   }
