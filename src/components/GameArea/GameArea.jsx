@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import Road from '../Road/Road';
+import MainMenu from '../MainMenu/MainMenu';
 import './GameArea.scss';
 import dead from '../../assets/images/dead.png';
 import hands from '../../assets/images/hands.png';
 import lightning from '../../assets/images/lightning.png';
 export default class GameArea extends Component {
-    state = { crashed: false, finalScore: 0, sleeping: false, drunk: false }
+    state = { crashed: true, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
     isGameOver = () => this.setState({crashed: true})
     getFinalScore = score => this.setState({ finalScore: score })
     getSleepStatus = sleep => this.setState({sleeping: sleep})
     getDrunkStatus = drunk => this.setState({drunk})
+    gameStart = () => this.setState({gameStart: true})
+    gotoMainMenu = () => this.setState({gameStart: false, crashed: false})
     restartGame = () => {
           
         this.refs.gameArea.style.backgroundColor = "white";
@@ -32,7 +35,7 @@ export default class GameArea extends Component {
         }
         return(
             <div className="game-area" ref="gameArea">
-                { this.state.crashed 
+                { this.state.crashed && this.state.finalScore > 0 
                     ?   <div className="game-area__overlay">
                             <div className="game-area__container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
@@ -43,11 +46,14 @@ export default class GameArea extends Component {
                                     <span className="game-area__img-text3">{deathString}</span>
                                     <img className="game-area__img2" ref="hand" src={hands} alt="zombie hands"/>
                                 </div>
-                                <button className="game-area__button" onClick={this.restartGame}> P L A Y  A G A I N ? </button>
+                                <button className="game-area__button" onClick={this.restartGame}> P L A Y  A G A I N </button>
+                                <button className="game-area__button" onClick={this.gotoMainMenu}> M A I N   M E N U </button>
                             </div>
                             <img className="game-area__lightning" src={lightning} alt="lightning" ref="lightning"/>
                         </div>  
-                    :   <Road handler={this.isGameOver} scoreHandler={this.getFinalScore} sleepHandler={this.getSleepStatus} drunkHandler={this.getDrunkStatus} crashed={this.state.crashed}/>
+                    :   this.state.gameStart 
+                        ? <Road handler={this.isGameOver} scoreHandler={this.getFinalScore} sleepHandler={this.getSleepStatus} drunkHandler={this.getDrunkStatus} crashed={this.state.crashed}/>
+                        : <MainMenu gameStart={this.gameStart}/>
                 }
             </div>
         );
