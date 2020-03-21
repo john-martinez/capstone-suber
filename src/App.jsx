@@ -4,7 +4,7 @@ import SideWindow from './components/SideWindow/SideWindow';
 import './App.scss';
 
 export default function App() {
-  document.title = "Suber";
+  document.title = "Süber game";
   return (
     <div className="app">
       <GameArea />

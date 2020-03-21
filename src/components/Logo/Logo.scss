@@ -1,0 +1,35 @@
+
+@keyframes spinning {
+    from { transform: rotate(0deg) }
+    to {transform: rotate(360deg)}
+}
+.logo {
+    position: relative;
+    display: inline-block;
+    &__img { 
+        width: 75px; 
+        height: auto;
+        position: absolute;
+        top: 15px;
+        left: 15%;
+    }
+    &__wheel1 {
+        position: absolute;
+        top: 25%;
+        left: 19%;
+        width: 15px;
+        height: auto;
+        transform-origin: center;
+        animation-name: spinning;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    &__wheel2 {
+        @extend .logo__wheel1;
+        left: 33%;
+    }
+    &__text { font-size: 4rem; font-family: Arial; color: #323436 }
+}
+

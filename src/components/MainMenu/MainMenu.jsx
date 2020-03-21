@@ -4,6 +4,8 @@ import asleep from '../../assets/images/asleep.png';
 import sleepy from '../../assets/images/sleepy.png';
 import snoozing from '../../assets/images/snoozing.png';
 import booze from '../../assets/images/booze.png';
+import Logo from '../Logo/Logo';
+
 import './MainMenu.scss';
 
 export default class MainMenu extends Component{
@@ -50,7 +52,7 @@ export default class MainMenu extends Component{
         }
         return(
             <div className={`main-menu ${this.state.currentPage === 'main' ? 'main-menu--main-menu' : ''}`}>
-                <h1 className="main-menu__header">SÜBER</h1>
+                <Logo />
                 {this.content}
             </div>
         );
