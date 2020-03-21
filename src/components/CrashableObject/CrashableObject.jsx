@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './CrashableObject.scss';
-import { cleanup } from '@testing-library/react';
 
 
 export default class CrashableObject extends Component {
@@ -26,8 +25,8 @@ export default class CrashableObject extends Component {
         if (this.state.bottom.split('px')[0] >= 700){ obj.style.display = "block"; }
         let car = document.querySelector('#car');
         let obsLeft = parseInt(this.state.left.split('px')[0]);
-        let obsBottom =  parseInt(this.state.bottom.split('px')[0]) + 30;
-        let obsTop = obsBottom + 50;
+        let obsBottom =  parseInt(this.state.bottom.split('px')[0])+15;
+        let obsTop = obsBottom + 70;
         let obsRight = obsLeft + 40;
         let carLeft = parseInt(car.style.left.split("px")[0]);
         let carBottom = parseInt(car.style.bottom.split("px")[0]);
