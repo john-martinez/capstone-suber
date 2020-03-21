@@ -49,7 +49,7 @@ export default class MainMenu extends Component{
             </>)
         }
         return(
-            <div className="main-menu">
+            <div className={`main-menu ${this.state.currentPage === 'main' ? 'main-menu--main-menu' : ''}`}>
                 <h1 className="main-menu__header">SÜBER</h1>
                 {this.content}
             </div>

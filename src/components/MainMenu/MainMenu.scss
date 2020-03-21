@@ -11,6 +11,7 @@
     height: 95%;
     overflow: auto;
 
+    &--main-menu { max-width: 550px; height: auto }
     @media screen and (max-width:1200px) {
         width: 90%;
     }
