@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import './CrashableObject.scss';
+import { cleanup } from '@testing-library/react';
 
 
 export default class CrashableObject extends Component {
     state = { left: this.props.left, bottom: this.props.bottom}
-    handler = (bottom, left="") => {
-        if (left){
-            this.setState({ bottom: bottom + "px", left })
-        } else 
-            this.setState({ bottom: bottom + "px" })
-    } 
-
+    
     gameTime = 0;
     speed = 15;
+    timeoutId = 0;
+    intervalId = 0;
+    a='';
+    stillMounted = false;
+    handler = (bottom, left="") => this.stillMounted ? left ? this.setState({ bottom: bottom + "px", left }) : this.setState({ bottom: bottom + "px" }) : this.a='';
     componentDidMount(){
-        setInterval(()=>{
+        this.stillMounted = true;
+        this.intervalId = setInterval(()=>{
             this.gameTime++;
             if (this.gameTime % 5 === 0) this.speed++;
         }, 1000)
+        this.forceUpdate();
     }
     componentDidUpdate(_,prevState){
         let obj = document.querySelector(`.${this.props.objName}`);
@@ -50,9 +52,15 @@ export default class CrashableObject extends Component {
                 left = Math.floor(Math.random()*430) + "px";
                 obj.style.display = 'none';
             }
-            setTimeout(()=>this.handler(newBottom, left), 50)
-        } 
+            this.timeoutId = setTimeout(()=>this.handler(newBottom, left), 50)
+        }
     }   
+
+    componentWillUnmount(){
+        this.stillMounted = false;
+        clearTimeout(this.timeoutId);
+        clearInterval(this.intervalId);
+    }
     
     render(){
         return (

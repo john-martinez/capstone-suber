@@ -19,16 +19,20 @@ export default class Sleep extends Component {
     }
 
     componentDidUpdate(){
-        console.log(this.state.sleep)
         if (this.state.sleep === 0){
             this.refs.eye.style.backgroundColor = "black";
         }
+        if (this.props.crashed){
+            clearInterval(this.intervalId);
+            this.props.sleepHandler(this.state.sleep === 0 ? true : false)
+        } 
     }
     isSleepy = () => {
         if (Math.floor(this.state.sleep % 5) === 0 && this.state.sleep < 21) return true;
         return false;
     }
 
+    componentWillUnmount(){ clearInterval(this.intervalId) }
     render(){
         return(
             <>
