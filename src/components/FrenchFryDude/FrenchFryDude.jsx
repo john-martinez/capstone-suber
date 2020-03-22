@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './FrenchFryDude.scss';
-import fries from '../../assets/images/fries.png';
+import fries from '../../assets/images/friesflowers.png';
 import eye from '../../assets/images/eye.png';
 import speechBubble from '../../assets/images/speech-bubble.png';
 

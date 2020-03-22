@@ -1,16 +1,19 @@
 
 .french-fry-dude__container {
-    width: 250px; 
-    height: auto; 
+    width: 450px; 
+    height:450px; 
     position: absolute;
-    top: 30%;
-    left: 12%;
+    bottom: 0;
+    left: -50px;
     z-index: 10;
 }
 
 .french-fry-dude { 
-    height: 100%;
-    width: 100%; 
+    height: auto;
+    width: 150px; 
+    position: absolute;
+    bottom: 25%;
+    left: 33%;
     
     &__character-body { position: absolute }
     &__left-eye{
@@ -20,7 +23,7 @@
         animation-iteration-count: infinite;
         position: absolute;
         bottom: 40%;
-        left: 35%;
+        left: 45%;
         width: 15px;
         height: auto;
     }
@@ -32,7 +35,7 @@
         animation-iteration-count: infinite;
         position: absolute;
         bottom: 40%;
-        left: 60%;
+        left: 55%;
         width: 15px;
         height: auto;
     }
@@ -41,14 +44,14 @@
         width: 175px;
         height: auto;
         position: absolute;
-        top: 0px;
-        left: 0;
+        top: 20%;
+        left: 20%;
     }
 
     &__blurb{
         position: absolute;
-        top: 7%;
-        left: 3%;
+        top: 24%;
+        left: 20%;
         width: 160px;
         padding: 10px;
         font-size: .9rem;

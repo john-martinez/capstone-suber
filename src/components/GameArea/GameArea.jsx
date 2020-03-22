@@ -102,7 +102,6 @@ export default class GameArea extends Component {
                     ?   <div className="game-area__overlay">
                             <div className="game-area__container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
-                                <FrenchFryDude speech={this.retrieveSpeech()}/>
                                 <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
                                     <span className="game-area__img-text1">R I P </span>
@@ -110,6 +109,7 @@ export default class GameArea extends Component {
                                     <span className="game-area__img-text3">{deathString}</span>
                                     <img className="game-area__img2" ref="hand" src={hands} alt="zombie hands"/>
                                 </div>
+                                    <FrenchFryDude speech={this.retrieveSpeech()}/>
                                 <span className="game-area__button game-area__button--green" onClick={this.restartGame}>  <FontAwesomeIcon icon={faUndo}/>  </span>
                                 <span className="game-area__button game-area__button--blue" onClick={this.gotoMainMenu}> <FontAwesomeIcon icon={faHome}/> </span>
                             </div>
