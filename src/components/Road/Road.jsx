@@ -12,6 +12,7 @@ import police from '../../assets/images/police-car.png';
 import booze from '../../assets/images/booze.png';
 import drive from '../../assets/sounds/drivingCutz.mp3';
 import yellowCar from '../../assets/images/car-yellow.png'; 
+import ingame from '../../assets/sounds/ingame.wav';
 export default class Road extends Component {
   state = { 
     crashed: false, 
@@ -19,15 +20,24 @@ export default class Road extends Component {
   }
   intervalId = 0;
   audio = "";
+  audio2 = "";
   a = '';
   stillMounted = false;
   componentDidMount(){
     this.stillMounted = true;
     this.audio = new Audio(drive);
+    this.audio2 = new Audio(ingame);
     this.playSound();
+    this.audio2.play();
+    this.audio2.volume = 0.2;
     this.audio.addEventListener('ended', ()=>{
       this.audio.currentTime = 1;
       this.audio.play(); 
+    }, false)
+
+    this.audio2.addEventListener('ended', ()=>{
+      this.audio2.currentTime = 0;
+      this.audio2.play(); 
     }, false)
     // this.forceUpdate() // initialize game
   }
@@ -37,6 +47,7 @@ export default class Road extends Component {
     let car = document.querySelector('.car');
     if (this.state.crashed){
       this.audio.pause(); 
+      this.audio2.pause();
       document.querySelector('.car').style.display = "none"; 
       this.props.drunkHandler(this.state.intoxicated > 0 ? true : false);
     } 

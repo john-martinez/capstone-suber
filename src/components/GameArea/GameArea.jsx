@@ -9,10 +9,13 @@ import lightning from '../../assets/images/lightning.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUndo } from '@fortawesome/free-solid-svg-icons'
 import bgsound from '../../assets/sounds/main_menu.mp3';
-
+import deadbg from '../../assets/sounds/dead.mp3';
+import thunder from '../../assets/sounds/thunder.mp3';
 export default class GameArea extends Component {
-    state = { crashed: false, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
+    state = { crashed: false, finalScore: 1, sleeping: false, drunk: false, gameStart: false }
     audio = '';
+    audio2 = '';
+    audio3 = '';
     isGameOver = () => this.setState({crashed: true})
     getFinalScore = score => this.setState({ finalScore: score })
     getSleepStatus = sleep => this.setState({sleeping: sleep})
@@ -20,9 +23,11 @@ export default class GameArea extends Component {
     gameStart = () => this.setState({gameStart: true})
     gotoMainMenu = () => this.setState({gameStart: false, crashed: false})
     restartGame = () => {
+        this.audio3.play();
         this.refs.gameArea.style.backgroundColor = "white";
         this.refs.lightning.style.visibility = "visible";
         setTimeout(()=>{
+            this.audio2.pause();
             this.refs.lightning.style.visibility = "hidden";
             this.refs.gameArea.style.backgroundColor = "#150336";
             this.refs.hand.style.height = "35%"; 
@@ -55,14 +60,30 @@ export default class GameArea extends Component {
             this.audio.currentTime = 0;
             this.audio.play(); 
         }, false)
+
+        this.audio2 = new Audio(deadbg);
+        this.audio2.volume = 0.2;
+        this.audio2.addEventListener('ended', ()=>{
+            this.audio2.currentTime = 0;
+            this.audio2.play(); 
+        }, false)
+        this.audio3 = new Audio(thunder);
+        this.audio3.volume = 0.2;
     }
 
     componentDidUpdate(){
-        if (this.state.gameStart)
+        // this.audio3.pause();
+        if (this.state.gameStart){
             this.audio.pause();
+            if (this.state.crashed) {
+                this.audio2.currentTime = 2;
+                this.audio2.play();
+            }
+        }
         else {
             this.audio.currentTime = 0;
             this.audio.play(); 
+            this.audio2.pause();
         }
     }
 
