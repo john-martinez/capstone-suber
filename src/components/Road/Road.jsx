@@ -35,8 +35,6 @@ export default class Road extends Component {
   componentDidUpdate(){
     if (this.state.crashed) { this.props.handler() }
     let car = document.querySelector('.car');
-    console.log('PROPS', this.props.crashed)
-    console.log('STATE', this.state.crashed)
     if (this.state.crashed){
       this.audio.pause(); 
       document.querySelector('.car').style.display = "none"; 
@@ -69,7 +67,7 @@ export default class Road extends Component {
   }
 
   componentWillUnmount(){ this.stillMounted = false; }
-  playSound = () => {this.audio.play() }
+  playSound = () => {this.audio.play(); this.audio.volume = 0.2; }
   render(){
     return(
       <div className={`road ${this.state.intoxicated !== 0 ? "road--blurred" : '' }`} ref="road" >

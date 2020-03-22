@@ -6,9 +6,13 @@ import './GameArea.scss';
 import dead from '../../assets/images/dead.png';
 import hands from '../../assets/images/hands.png';
 import lightning from '../../assets/images/lightning.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUndo } from '@fortawesome/free-solid-svg-icons'
+import bgsound from '../../assets/sounds/main_menu.mp3';
 
 export default class GameArea extends Component {
-    state = { crashed: true, finalScore: 2, sleeping: false, drunk: false, gameStart: true }
+    state = { crashed: false, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
+    audio = '';
     isGameOver = () => this.setState({crashed: true})
     getFinalScore = score => this.setState({ finalScore: score })
     getSleepStatus = sleep => this.setState({sleeping: sleep})
@@ -16,7 +20,6 @@ export default class GameArea extends Component {
     gameStart = () => this.setState({gameStart: true})
     gotoMainMenu = () => this.setState({gameStart: false, crashed: false})
     restartGame = () => {
-          
         this.refs.gameArea.style.backgroundColor = "white";
         this.refs.lightning.style.visibility = "visible";
         setTimeout(()=>{
@@ -26,6 +29,43 @@ export default class GameArea extends Component {
         }, 500);
         setTimeout(()=>this.setState({crashed: false}), 2000)    
     }
+    retrieveSpeech = () => {
+        let speech = ['NOOOOOOOO HUHUHUHUHU', "Why didn't you just use a ride share app?"];
+
+        if (this.state.drunk) 
+            speech = [...speech,'Why did you even decide to drink and drive?']
+        
+        if (this.state.sleeping)
+            speech = [...speech, "You fell asleep while driving"]
+        if (!this.state.drunk && !this.state.sleeping)
+            speech = [...speech, "Why were you driving recklessly!"];
+
+            speech = [...speech, "You made a french fry cry!", "Now I'm a french CRY...", "Did it make you laugh?", "We'll never know cos you're dead :("]
+        
+
+        return speech;
+    }
+    componentDidMount(){ 
+        this.audio = new Audio(bgsound);
+        this.audio.muted = true;
+        this.audio.play();
+        this.audio.muted = false;
+        this.audio.volume = 0.2;
+        this.audio.addEventListener('ended', ()=>{
+            this.audio.currentTime = 1;
+            this.audio.play(); 
+        }, false)
+    }
+
+    componentDidUpdate(){
+        if (this.state.gameStart)
+            this.audio.pause();
+        else {
+            this.audio.currentTime = 0;
+            this.audio.play(); 
+        }
+    }
+
     render(){
         let { sleeping, drunk } = this.state;
         let deathString = "";
@@ -41,7 +81,7 @@ export default class GameArea extends Component {
                     ?   <div className="game-area__overlay">
                             <div className="game-area__container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
-                                <FrenchFryDude />
+                                <FrenchFryDude speech={this.retrieveSpeech()}/>
                                 <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
                                     <span className="game-area__img-text1">R I P </span>
@@ -49,8 +89,8 @@ export default class GameArea extends Component {
                                     <span className="game-area__img-text3">{deathString}</span>
                                     <img className="game-area__img2" ref="hand" src={hands} alt="zombie hands"/>
                                 </div>
-                                <button className="game-area__button" onClick={this.restartGame}> P L A Y  A G A I N </button>
-                                <button className="game-area__button" onClick={this.gotoMainMenu}> M A I N   M E N U </button>
+                                <span className="game-area__button game-area__button--green" onClick={this.restartGame}>  <FontAwesomeIcon icon={faUndo}/>  </span>
+                                <span className="game-area__button game-area__button--blue" onClick={this.gotoMainMenu}> <FontAwesomeIcon icon={faHome}/> </span>
                             </div>
                             <img className="game-area__lightning" src={lightning} alt="lightning" ref="lightning"/>
                         </div>  

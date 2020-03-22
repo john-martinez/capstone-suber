@@ -7,8 +7,11 @@ export default class Sleep extends Component {
 
     intervalId = 0;
     wakeUpCount = 0;
+    a = 0;
+    stillMounted = false;
     componentDidMount(){
-        this.intervalId = setInterval(()=> this.state.sleep === 0 ? clearInterval(this.intervalId) : this.setState({sleep: this.state.sleep - 1}), 1000)
+        this.stillMounted = true;
+        this.intervalId = setInterval(()=> this.state.sleep === 0 ? clearInterval(this.intervalId) : this.stillMounted ? this.setState({sleep: this.state.sleep - 1}) : this.a='', 1000)
         window.addEventListener('mousemove', ()=>{
             this.wakeUpCount += 0.1;
             if (this.wakeUpCount >= 30){
@@ -32,7 +35,7 @@ export default class Sleep extends Component {
         return false;
     }
 
-    componentWillUnmount(){ clearInterval(this.intervalId) }
+    componentWillUnmount(){ clearInterval(this.intervalId); this.stillMounted = false;}
     render(){
         return(
             <>

@@ -4,24 +4,20 @@ import fries from '../../assets/images/fries.png';
 import eye from '../../assets/images/eye.png';
 import speechBubble from '../../assets/images/speech-bubble.png';
 
+
 export default class FrenchFryDude extends Component {
     state = {speech: ''}
 
-    speechArr = [ 
-        'testtest test test test',
-        'test test test 2testtest',
-        'testtest 3test test',
-        'test4'
-    ]
     ctr = 1;
+    intervalId = 0;
     componentDidMount(){
-        this.setState({speech: this.speechArr[0]});
-        setInterval(()=>{
-            console.log(this.ctr);
-            this.setState({speech: this.speechArr[this.ctr]})
-            this.ctr < this.speechArr.length-1 ? this.ctr++ : this.ctr = 0;
+        this.setState({speech: this.props.speech[0]});
+        this.intervalId = setInterval(()=>{
+            this.setState({speech: this.props.speech[this.ctr]})
+            this.ctr < this.props.speech.length-1 ? this.ctr++ : this.ctr = 0;
         }, 5000);
     }
+    componentWillUnmount(){ clearInterval(this.intervalId) }
     render(){
         return(
             <div className="french-fry-dude__container">
