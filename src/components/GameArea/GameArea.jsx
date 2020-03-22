@@ -52,7 +52,7 @@ export default class GameArea extends Component {
         this.audio.muted = false;
         this.audio.volume = 0.2;
         this.audio.addEventListener('ended', ()=>{
-            this.audio.currentTime = 1;
+            this.audio.currentTime = 0;
             this.audio.play(); 
         }, false)
     }
