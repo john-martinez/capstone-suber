@@ -1,0 +1,57 @@
+
+.french-fry-dude__container {
+    width: 250px; 
+    height: auto; 
+    position: absolute;
+    top: 30%;
+    left: 12%;
+    z-index: 10;
+}
+
+.french-fry-dude { 
+    height: 100%;
+    width: 100%; 
+    
+    &__character-body { position: absolute }
+    &__left-eye{
+        animation-name: blinking;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        position: absolute;
+        bottom: 40%;
+        left: 35%;
+        width: 15px;
+        height: auto;
+    }
+
+    &__right-eye{
+        animation-name: blinking;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        position: absolute;
+        bottom: 40%;
+        left: 60%;
+        width: 15px;
+        height: auto;
+    }
+
+    &__bubble {
+        width: 175px;
+        height: auto;
+        position: absolute;
+        top: 0px;
+        left: 0;
+    }
+
+    &__blurb{
+        position: absolute;
+        top: 7%;
+        left: 3%;
+        width: 160px;
+        padding: 10px;
+        font-size: .9rem;
+        font-family: Arial;
+    }
+}

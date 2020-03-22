@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Road from '../Road/Road';
 import MainMenu from '../MainMenu/MainMenu';
+import FrenchFryDude from '../FrenchFryDude/FrenchFryDude';
 import './GameArea.scss';
 import dead from '../../assets/images/dead.png';
 import hands from '../../assets/images/hands.png';
 import lightning from '../../assets/images/lightning.png';
+
 export default class GameArea extends Component {
-    state = { crashed: true, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
+    state = { crashed: true, finalScore: 2, sleeping: false, drunk: false, gameStart: true }
     isGameOver = () => this.setState({crashed: true})
     getFinalScore = score => this.setState({ finalScore: score })
     getSleepStatus = sleep => this.setState({sleeping: sleep})
@@ -39,6 +41,7 @@ export default class GameArea extends Component {
                     ?   <div className="game-area__overlay">
                             <div className="game-area__container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
+                                <FrenchFryDude />
                                 <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
                                     <span className="game-area__img-text1">R I P </span>

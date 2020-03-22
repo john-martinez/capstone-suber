@@ -26,9 +26,9 @@ export default class MainMenu extends Component{
                     <div className="main-menu__instructions">
                         <p><strong>MOVEMENT KEYS</strong></p>
                         <p><strong>W</strong>: Move Forward</p>
-                        <p><strong>A</strong>: Move Forward</p>
-                        <p><strong>S</strong>: Move Forward</p>
-                        <p><strong>D</strong>: Move Forward</p>
+                        <p><strong>A</strong>: Move Left</p>
+                        <p><strong>S</strong>: Move Backward</p>
+                        <p><strong>D</strong>: Move Right</p>
                     </div>
                     <div className="main-menu__instructions">
                         <p><strong>DEALING WITH SLEEPINESS</strong> </p>
