@@ -70,6 +70,7 @@
         padding: 10px 30px;
         border-radius: 5px;
         cursor: pointer;
+        z-index: 100;
         border: 1px solid black;
         &--green { background-color: green; &:hover{background-color: orange} }
         &--blue { background-color: blue; &:hover{background-color: orange}  }

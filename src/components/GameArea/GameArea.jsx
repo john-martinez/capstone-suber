@@ -12,7 +12,7 @@ import bgsound from '../../assets/sounds/main_menu.mp3';
 import deadbg from '../../assets/sounds/dead.mp3';
 import thunder from '../../assets/sounds/thunder.mp3';
 export default class GameArea extends Component {
-    state = { crashed: false, finalScore: 1, sleeping: false, drunk: false, gameStart: false }
+    state = { crashed: false, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
     audio = '';
     audio2 = '';
     audio3 = '';
