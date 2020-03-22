@@ -16,7 +16,7 @@ export default class MainMenu extends Component{
             case "main": this.content = (<>
                 <button className="main-menu__button" onClick={this.props.gameStart}>PLAY</button>
                 <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'instructions'})}>INSTRUCTIONS</button>
-                <button className="main-menu__button">ABOUT</button> 
+                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'about'})} > ABOUT </button> 
             </>)
             break;
 
@@ -49,6 +49,20 @@ export default class MainMenu extends Component{
                     </div>
                 </div>
             </>)
+            break;
+
+            case 'about': this.content = (<>
+                <h2 className="main-menu__header"><span className="main-menu__back-button" onClick={()=>this.setState({currentPage: "main"})}>⬅</span> ABOUT</h2> 
+                <div className="main-menu__instructions-container">
+                    <div className="main-menu__instructions">
+                        <p><strong>SÜBER</strong> is an arcade driving game where you get to experience how driving under the influence of alcohol or fatigue can impair your driving skill.</p>
+                        <p> <strong>The purpose of this app is to    spread awareness</strong> to users by letting them experience how much harder it is to control a moving vehicle when a person's reaction and senses are impaired.</p>
+                        <p>Capstone project for BrainStation - Web Development Winter 2020</p>
+                        <p>Made using <strong>React</strong> and <strong>Sass</strong></p>
+                    </div>
+                </div>
+            </>) 
+            break;
         }
         return(
             <div className={`main-menu ${this.state.currentPage === 'main' ? 'main-menu--main-menu' : ''}`}>
