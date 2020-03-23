@@ -86,15 +86,15 @@ export default class Road extends Component {
         <RoadLines crashed={this.state.crashed} />
         <RoadLines crashed={this.state.crashed} />  
         <Car intoxicated={this.state.intoxicated} img={yellowCar} crashed={this.crashed} crashableObj={this.state.otherCar1}/>  
-        <CrashableObject left="150px" bottom={`${window.innerHeight + 700}px`} objName="car2" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
-        <CrashableObject left="50px"  bottom={`${window.innerHeight + 900}px`} objName="car3" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
-        <CrashableObject left="150px" bottom={`${window.innerHeight + 1150}px`} objName="car4" crashed={this.crashed} didCrash={this.state.crashed} img={blueCar}/>
-        <CrashableObject left="50px"  bottom={`${window.innerHeight + 1650}px`} objName="car6" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
-        <CrashableObject left="300px" bottom={`${window.innerHeight + 1350}px`} objName="car5" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
-        <CrashableObject left="0px"   bottom={`${window.innerHeight + 1100}px`} objName="car7" crashed={this.crashed} didCrash={this.state.crashed} img={blueCar}/>
-        <CrashableObject left="50px"  bottom={`${window.innerHeight + 1000}px`} objName="car8" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
-        <CrashableObject left="350px" bottom={`${window.innerHeight + 800}px`} objName="booze1" crashed={this.intoxicated} didCrash={this.state.crashed} img={booze}/>
-        <CrashableObject left="350px" bottom={`${window.innerHeight + 1800}px`} objName="booze2" crashed={this.intoxicated} didCrash={this.state.crashed}  img={booze}/> 
+        <CrashableObject left="150px" bottom={`${window.innerHeight + 200}px`} objName="car2" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
+        <CrashableObject left="50px"  bottom={`${window.innerHeight + 100}px`} objName="car3" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
+        <CrashableObject left="150px" bottom={`${window.innerHeight + 200}px`} objName="car4" crashed={this.crashed} didCrash={this.state.crashed} img={blueCar}/>
+        <CrashableObject left="50px"  bottom={`${window.innerHeight + 300}px`} objName="car6" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
+        <CrashableObject left="300px" bottom={`${window.innerHeight + 400}px`} objName="car5" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
+        <CrashableObject left="0px"   bottom={`${window.innerHeight + 300}px`} objName="car7" crashed={this.crashed} didCrash={this.state.crashed} img={blueCar}/>
+        <CrashableObject left="50px"  bottom={`${window.innerHeight + 600}px`} objName="car8" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
+        <CrashableObject left="400px" bottom={`${window.innerHeight + 100}px`} objName="booze1" crashed={this.intoxicated} didCrash={this.state.crashed} img={booze}/>
+        <CrashableObject left="350px" bottom={`${window.innerHeight + 200}px`} objName="booze2" crashed={this.intoxicated} didCrash={this.state.crashed}  img={booze}/> 
         <Score handler={this.props.scoreHandler} crashed={this.state.crashed} intoxicated={this.state.intoxicated }/>
         <Sleep crashed={this.state.crashed} sleepHandler={this.props.sleepHandler}/>
       </div>
