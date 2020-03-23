@@ -3,8 +3,12 @@
     0% {height: auto}
     5% {height: 5px}
     10%,100% {height: auto}
-
 }
+@keyframes fading {
+    from, to { opacity: 1 }
+    50% { opacity: 0 }
+}
+
 .game-area {
     border: 1px solid black;
     height: 100%;
@@ -19,10 +23,16 @@
         height: auto;
         margin: 0 auto;
     }
-
+    &__blurb { 
+        color: #323436;
+        animation-name: fading;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
 
     &__container { 
         position: absolute;
+        max-width: 700px;
         width: 95%;
         top: 50%;
         left: 50%;

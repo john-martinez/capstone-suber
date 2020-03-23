@@ -23,6 +23,10 @@
 
     &__back-button {
         cursor: pointer;
+        position: absolute;
+        font-size: 2rem;
+        top: 10px;
+        left: 10px;
         &:hover { color: orange }
     }
     &__header { margin: 5px }
@@ -31,13 +35,16 @@
         width: 100%;
         padding: 15px;
         margin: 10px auto;
+        color: #150336;
+        border: none;
+        border: 1px solid #150336;
         border-radius: 5px;
         outline: none;
-        background-color: #AFAFAF;
+        background-color: rgba(0,0,0,0);
         max-width: 400px;
-        background-color: white;
         cursor: pointer;
         transition: .2s ease-in-out;
+        &:first-of-type { color: green; border: 1px solid green; background-color: #1d1e21;}
         &:hover { background-color: darken(white, 15%)}
     }
     &__text--emphasize { font-style: italic; color: red}

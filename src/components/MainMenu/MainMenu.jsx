@@ -16,9 +16,9 @@ export default class MainMenu extends Component{
     render(){
         switch(this.state.currentPage){
             case "main": this.content = (<>
-                <button className="main-menu__button" onClick={this.props.gameStart}>PLAY</button>
-                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'instructions'})}>INSTRUCTIONS</button>
-                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'about'})} > ABOUT </button> 
+                <button className="main-menu__button" onClick={this.props.gameStart}>P L A Y</button>
+                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'instructions'})}>I N S T R U C T I O N S</button>
+                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'about'})} > A B O U T </button> 
             </>)
             break;
 

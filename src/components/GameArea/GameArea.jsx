@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Road from '../Road/Road';
 import MainMenu from '../MainMenu/MainMenu';
 import FrenchFryDude from '../FrenchFryDude/FrenchFryDude';
+import Logo from '../Logo/Logo';
 import './GameArea.scss';
 import dead from '../../assets/images/dead.png';
 import hands from '../../assets/images/hands.png';
@@ -12,7 +13,14 @@ import bgsound from '../../assets/sounds/main_menu.mp3';
 import deadbg from '../../assets/sounds/dead.mp3';
 import thunder from '../../assets/sounds/thunder.mp3';
 export default class GameArea extends Component {
-    state = { crashed: false, finalScore: 0, sleeping: false, drunk: false, gameStart: false }
+    state = { 
+        crashed: false, 
+        finalScore: 0, 
+        sleeping: false, 
+        drunk: false, 
+        gameStart: false,
+        clicked: false
+    }
     audio = '';
     audio2 = '';
     audio3 = '';
@@ -51,10 +59,10 @@ export default class GameArea extends Component {
         return speech;
     }
     componentDidMount(){ 
+        document.addEventListener('click', ()=>{
+            !this.state.clicked ? this.setState({clicked: true}) : this.a = '';
+        })
         this.audio = new Audio(bgsound);
-        this.audio.muted = true;
-        this.audio.play();
-        this.audio.muted = false;
         this.audio.volume = 0.2;
         this.audio.addEventListener('ended', ()=>{
             this.audio.currentTime = 0;
@@ -73,7 +81,7 @@ export default class GameArea extends Component {
 
     componentDidUpdate(){
         // this.audio3.pause();
-        if (this.state.gameStart){
+        if (this.state.gameStart ){
             this.audio.pause();
             if (this.state.crashed) {
                 this.audio2.currentTime = 2;
@@ -117,7 +125,12 @@ export default class GameArea extends Component {
                         </div>  
                     :   this.state.gameStart 
                         ? <Road handler={this.isGameOver} scoreHandler={this.getFinalScore} sleepHandler={this.getSleepStatus} drunkHandler={this.getDrunkStatus} crashed={this.state.crashed}/>
-                        : <MainMenu gameStart={this.gameStart}/>
+                        : this.state.clicked
+                            ? <MainMenu gameStart={this.gameStart}/> 
+                            : <div className="game-area__container">
+                                <Logo />
+                                <h3 className="game-area__blurb">>> CLICK TO START {`\<\<`} </h3>
+                            </div>
                 }
             </div>
         );
