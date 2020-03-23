@@ -86,7 +86,7 @@ export default class Road extends Component {
         <RoadLines crashed={this.state.crashed} />
         <RoadLines crashed={this.state.crashed} />  
         <Car intoxicated={this.state.intoxicated} img={yellowCar} crashed={this.crashed} crashableObj={this.state.otherCar1}/>  
-        <CrashableObject left="150px" bottom={`${window.innerHeight + 200}px`} objName="car2" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
+        <CrashableObject left="150px" bottom={`${window.innerHeight + 250}px`} objName="car2" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
         <CrashableObject left="50px"  bottom={`${window.innerHeight + 100}px`} objName="car3" crashed={this.crashed} didCrash={this.state.crashed} img={greenCar}/>
         <CrashableObject left="150px" bottom={`${window.innerHeight + 200}px`} objName="car4" crashed={this.crashed} didCrash={this.state.crashed} img={blueCar}/>
         <CrashableObject left="50px"  bottom={`${window.innerHeight + 300}px`} objName="car6" crashed={this.crashed} didCrash={this.state.crashed} img={police}/>
