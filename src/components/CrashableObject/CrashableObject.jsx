@@ -22,7 +22,7 @@ export default class CrashableObject extends Component {
     }
     componentDidUpdate(_,prevState){
         let obj = document.querySelector(`.${this.props.objName}`);
-        if (this.state.bottom.split('px')[0] >= 700){ obj.style.display = "block"; }
+        if (this.state.bottom.split('px')[0] >= this.props.bottom.split('px')[0]){ obj.style.display = "block"; }
         let car = document.querySelector('#car');
         let obsLeft = parseInt(this.state.left.split('px')[0]);
         let obsBottom =  parseInt(this.state.bottom.split('px')[0])+15;
