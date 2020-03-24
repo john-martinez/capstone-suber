@@ -12,6 +12,7 @@ import { faHome, faUndo } from '@fortawesome/free-solid-svg-icons'
 import bgsound from '../../assets/sounds/main_menu.mp3';
 import deadbg from '../../assets/sounds/dead.mp3';
 import thunder from '../../assets/sounds/thunder.mp3';
+import crash from '../../assets/sounds/crash.mp3';
 export default class GameArea extends Component {
     state = { 
         crashed: false, 
@@ -24,6 +25,7 @@ export default class GameArea extends Component {
     audio = '';
     audio2 = '';
     audio3 = '';
+    audio4 = '';
     isGameOver = () => this.setState({crashed: true})
     getFinalScore = score => this.setState({ finalScore: score })
     getSleepStatus = sleep => this.setState({sleeping: sleep})
@@ -77,6 +79,9 @@ export default class GameArea extends Component {
         }, false)
         this.audio3 = new Audio(thunder);
         this.audio3.volume = 0.2;
+
+        this.audio4 = new Audio(crash);
+        this.audio4.volume = 0.2;
     }
 
     componentDidUpdate(){
@@ -86,6 +91,7 @@ export default class GameArea extends Component {
             if (this.state.crashed) {
                 this.audio2.currentTime = 2;
                 this.audio2.play();
+                this.audio4.play();
             }
         }
         else {
@@ -93,6 +99,14 @@ export default class GameArea extends Component {
             this.audio.play(); 
             this.audio2.pause();
         }
+    
+        if (this.state.crashed && this.state.finalScore){
+            setTimeout(()=>this.refs.overlay.style.filter = "opacity(1)", 600)
+            setTimeout(()=>{
+                this.refs.container.style.filter = "opacity(1)";
+            }, 3000);
+        }
+
     }
 
     render(){
@@ -106,9 +120,9 @@ export default class GameArea extends Component {
         }
         return(
             <div className="game-area" ref="gameArea">
-                { this.state.crashed && this.state.finalScore > 0 
-                    ?   <div className="game-area__overlay">
-                            <div className="game-area__container">
+                { this.state.crashed && this.state.finalScore 
+                    ?   <div className="game-area__overlay" ref="overlay">
+                            <div className={`game-area__container `} ref="container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
                                 <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
@@ -127,7 +141,7 @@ export default class GameArea extends Component {
                         ? <Road handler={this.isGameOver} scoreHandler={this.getFinalScore} sleepHandler={this.getSleepStatus} drunkHandler={this.getDrunkStatus} crashed={this.state.crashed}/>
                         : this.state.clicked
                             ? <MainMenu gameStart={this.gameStart}/> 
-                            : <div className="game-area__container">
+                            : <div className="game-area__container--start">
                                 <Logo />
                                 <h3 className="game-area__blurb">>> CLICK TO START {`\<\<`} </h3>
                             </div>
