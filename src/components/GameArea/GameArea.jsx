@@ -13,6 +13,7 @@ import bgsound from '../../assets/sounds/main_menu.mp3';
 import deadbg from '../../assets/sounds/dead.mp3';
 import thunder from '../../assets/sounds/thunder.mp3';
 import crash from '../../assets/sounds/crash.mp3';
+import Shake from 'shake.js';
 export default class GameArea extends Component {
     state = { 
         crashed: false, 
@@ -61,6 +62,17 @@ export default class GameArea extends Component {
         return speech;
     }
     componentDidMount(){ 
+        let shakeEvent = new Shake({
+            threshold: 15,
+            timeout: 1000
+        })
+
+        shakeEvent.start();
+
+        window.addEventListener('shake', ()=>{
+            alert('SHOOK');
+        }, false)
+
         document.addEventListener('click', ()=>{
             !this.state.clicked ? this.setState({clicked: true}) : this.a = '';
         })
