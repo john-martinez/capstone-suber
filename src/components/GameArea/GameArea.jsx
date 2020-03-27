@@ -70,7 +70,7 @@ export default class GameArea extends Component {
         shakeEvent.start();
 
         window.addEventListener('shake', ()=>{
-            alert('SHOOK');
+            this.setState({clicked: true})
         }, false)
 
         document.addEventListener('click', ()=>{
