@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Road from '../Road/Road';
 import MainMenu from '../MainMenu/MainMenu';
 import FrenchFryDude from '../FrenchFryDude/FrenchFryDude';
+import HighScores from '../HighScores/HighScores';
 import Logo from '../Logo/Logo';
 import './GameArea.scss';
 import dead from '../../assets/images/dead.png';
@@ -23,7 +24,9 @@ export default class GameArea extends Component {
         drunk: false, 
         gameStart: false,
         clicked: false,
-        playerName: ''
+        playerName: '',
+        showScores: false,
+        isScoreSet: false,
     }
     audio = '';
     audio2 = '';
@@ -50,7 +53,6 @@ export default class GameArea extends Component {
     setPlayerNameAndStart = e => {
       e.preventDefault();
       const playerName = e.target.playerName.value;
-      console.log(playerName)
       this.setState({ playerName, gameStart: true })
     }
 
@@ -115,10 +117,12 @@ export default class GameArea extends Component {
             setTimeout(()=>{
                 this.refs.container.style.filter = "opacity(1)";
             }, 3000);
-            axios.post('http://localhost:3000/api/highscore/', {
-              playerName: this.state.playerName,
-              playerScore: this.state.finalScore
-            })
+            if (!this.state.isScoreSet) {
+              axios.post('http://localhost:3000/api/highscore/', {
+                playerName: this.state.playerName,
+                playerScore: this.state.finalScore
+              }).then(_=>this.setState({ isScoreSet: true }))
+            }
         }
 
     }
@@ -138,13 +142,18 @@ export default class GameArea extends Component {
                     ?   <div className="game-area__overlay" ref="overlay">
                             <div className={`game-area__container `} ref="container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
-                                <div className="game-area__img-container">
+                                <button onClick={()=>this.setState({ showScores: !this.state.showScores })}>CLICK</button>
+                                { this.state.showScores 
+                                ? <HighScores />
+                                : <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
                                     <span className="game-area__img-text1">R I P </span>
                                     <span className="game-area__img-text2">{this.state.playerName}</span>
                                     <span className="game-area__img-text3">{deathString}</span>
                                     <img className="game-area__img2" ref="hand" src={hands} alt="zombie hands"/>
-                                </div>
+                                  </div>
+                              }
+                                
                                     <FrenchFryDude speech={this.retrieveSpeech()}/>
                                 <span className="game-area__button game-area__button--green" onClick={this.restartGame}>  <FontAwesomeIcon icon={faUndo}/>  </span>
                                 <span className="game-area__button game-area__button--blue" onClick={this.gotoMainMenu}> <FontAwesomeIcon icon={faHome}/> </span>
