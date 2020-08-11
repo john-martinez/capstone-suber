@@ -13,6 +13,7 @@ import bgsound from '../../assets/sounds/main_menu.mp3';
 import deadbg from '../../assets/sounds/dead.mp3';
 import thunder from '../../assets/sounds/thunder.mp3';
 import crash from '../../assets/sounds/crash.mp3';
+import axios from 'axios';
 
 export default class GameArea extends Component {
     state = { 
@@ -21,7 +22,8 @@ export default class GameArea extends Component {
         sleeping: false, 
         drunk: false, 
         gameStart: false,
-        clicked: false
+        clicked: false,
+        playerName: ''
     }
     audio = '';
     audio2 = '';
@@ -45,6 +47,13 @@ export default class GameArea extends Component {
         }, 500);
         setTimeout(()=>this.setState({crashed: false}), 2000)    
     }
+    setPlayerNameAndStart = e => {
+      e.preventDefault();
+      const playerName = e.target.playerName.value;
+      console.log(playerName)
+      this.setState({ playerName, gameStart: true })
+    }
+
     retrieveSpeech = () => {
         let speech = ['NOOOOOOOO HUHUHUHUHU', "Why didn't you just use a ride share app?"];
 
@@ -106,6 +115,10 @@ export default class GameArea extends Component {
             setTimeout(()=>{
                 this.refs.container.style.filter = "opacity(1)";
             }, 3000);
+            axios.post('http://localhost:3000/api/highscore/', {
+              playerName: this.state.playerName,
+              playerScore: this.state.finalScore
+            })
         }
 
     }
@@ -128,7 +141,7 @@ export default class GameArea extends Component {
                                 <div className="game-area__img-container">
                                     <img className="game-area__img" src={dead} alt="tombstone"/>
                                     <span className="game-area__img-text1">R I P </span>
-                                    <span className="game-area__img-text2">YOU</span>
+                                    <span className="game-area__img-text2">{this.state.playerName}</span>
                                     <span className="game-area__img-text3">{deathString}</span>
                                     <img className="game-area__img2" ref="hand" src={hands} alt="zombie hands"/>
                                 </div>
@@ -138,10 +151,10 @@ export default class GameArea extends Component {
                             </div>
                             <img className="game-area__lightning" src={lightning} alt="lightning" ref="lightning"/>
                         </div>  
-                    :   this.state.gameStart 
+                    :   this.state.gameStart
                         ? <Road handler={this.isGameOver} scoreHandler={this.getFinalScore} sleepHandler={this.getSleepStatus} drunkHandler={this.getDrunkStatus} crashed={this.state.crashed}/>
                         : this.state.clicked
-                            ? <MainMenu gameStart={this.gameStart}/> 
+                            ? <MainMenu setPlayerNameAndStart={this.setPlayerNameAndStart}/> 
                             : <div className="game-area__container--start">
                                 <Logo />
                                 <h3 className="game-area__blurb">>> CLICK TO START {`\<\<`} </h3>

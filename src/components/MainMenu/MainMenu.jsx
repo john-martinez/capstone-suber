@@ -16,10 +16,19 @@ export default class MainMenu extends Component{
     render(){
         switch(this.state.currentPage){
             case "main": this.content = (<>
-                <button className="main-menu__button" onClick={this.props.gameStart}>P L A Y</button>
+                <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'playerName'})}>P L A Y</button>
                 <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'instructions'})}>I N S T R U C T I O N S</button>
                 <button className="main-menu__button" onClick={()=>this.setState({currentPage: 'about'})} > A B O U T </button> 
             </>)
+            break;
+
+            case "playerName": this.content = (
+                <form className="main-menu__field-container" onSubmit={this.props.setPlayerNameAndStart}>
+                    <h2 className="main-menu__header"><span className="main-menu__back-button" onClick={()=>this.setState({currentPage: "main"})}><FontAwesomeIcon icon={faStepBackward}/></span> Driver Name</h2> 
+                    <input className="main-menu__field" maxLength="6" placeholder="Enter Driver Name" name="playerName"/>
+                    <button className="main-menu__button"> Set Driver Name </button>
+                </form>
+            )
             break;
 
             case "instructions": this.content =(<>
