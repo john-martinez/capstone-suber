@@ -8,7 +8,7 @@ export default class HighScores extends Component {
 
   componentDidMount(){
     axios
-      .get('http://localhost:3000/api/highscore')
+      .get('https://suberapi.herokuapp.com/api/highscore')
       .then(res=>this.setState({ scores: res.data }))
       .catch(err=>console.error(err));
   }

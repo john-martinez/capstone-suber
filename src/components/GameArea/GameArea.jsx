@@ -37,7 +37,7 @@ export default class GameArea extends Component {
     getSleepStatus = sleep => this.setState({sleeping: sleep})
     getDrunkStatus = drunk => this.setState({drunk})
     gameStart = () => this.setState({gameStart: true})
-    gotoMainMenu = () => this.setState({gameStart: false, crashed: false})
+    gotoMainMenu = () => this.setState({gameStart: false, crashed: false, isScoreSet: false})
     restartGame = () => {
         this.audio3.play();
         this.refs.gameArea.style.backgroundColor = "white";
@@ -48,7 +48,7 @@ export default class GameArea extends Component {
             this.refs.gameArea.style.backgroundColor = "#150336";
             this.refs.hand.style.height = "35%"; 
         }, 500);
-        setTimeout(()=>this.setState({crashed: false}), 2000)    
+        setTimeout(()=>this.setState({crashed: false, isScoreSet: false}), 2000)    
     }
     setPlayerNameAndStart = e => {
       e.preventDefault();
@@ -113,12 +113,12 @@ export default class GameArea extends Component {
         }
     
         if (this.state.crashed && this.state.finalScore){
-            setTimeout(()=>this.refs.overlay.style.filter = "opacity(1)", 600)
+            setTimeout(()=> { if (this.refs.overlay) this.refs.overlay.style.filter = "opacity(1)" }, 600)
             setTimeout(()=>{
-                this.refs.container.style.filter = "opacity(1)";
+                if (this.refs.container) this.refs.container.style.filter = "opacity(1)";
             }, 3000);
             if (!this.state.isScoreSet) {
-              axios.post('http://localhost:3000/api/highscore/', {
+              axios.post('https://suberapi.herokuapp.com/api/highscore', {
                 playerName: this.state.playerName,
                 playerScore: this.state.finalScore
               }).then(_=>this.setState({ isScoreSet: true }))
