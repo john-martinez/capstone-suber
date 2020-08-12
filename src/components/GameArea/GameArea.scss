@@ -30,6 +30,21 @@
         animation-iteration-count: infinite;
     }
 
+    &__highscore-button {
+      position: absolute;
+      top: 60px;
+      right: 175px;
+      background-color: rgba(255,255,255,0.7);
+      padding: 5px;
+      border: 1px solid orange;
+      cursor: pointer;
+
+      &:hover {
+        color: orange;
+        background-color: black;
+      }
+    }
+
     &__container { 
         position: absolute;
         max-width: 700px;

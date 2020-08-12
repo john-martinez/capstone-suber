@@ -7,7 +7,8 @@
   text-align: left;
   border-radius: 8px;
   overflow: auto;
-
+  position: relative;
+  z-index: 11;
 
   &__item {
     width: 100%;
