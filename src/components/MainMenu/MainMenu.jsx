@@ -74,6 +74,8 @@ export default class MainMenu extends Component{
                 </div>
             </>) 
             break;
+
+            default: // do nothing
         }
         return(
             <div className={`main-menu ${this.state.currentPage === 'main' ? 'main-menu--main-menu' : ''}`}>

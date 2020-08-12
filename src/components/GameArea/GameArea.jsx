@@ -172,7 +172,7 @@ export default class GameArea extends Component {
                             ? <MainMenu setPlayerNameAndStart={this.setPlayerNameAndStart}/> 
                             : <div className="game-area__container--start">
                                 <Logo />
-                                <h3 className="game-area__blurb">>> CLICK TO START {`\<\<`} </h3>
+                                <h3 className="game-area__blurb"> {`>> CLICK TO START <<`} </h3>
                             </div>
                 }
             </div>

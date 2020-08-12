@@ -44,7 +44,6 @@ export default class Road extends Component {
 
   componentDidUpdate(){
     if (this.state.crashed) { this.props.handler() }
-    let car = document.querySelector('.car');
     if (this.state.crashed){
       this.audio.pause(); 
       this.audio2.pause();

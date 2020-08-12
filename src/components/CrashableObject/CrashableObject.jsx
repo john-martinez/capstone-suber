@@ -32,10 +32,9 @@ export default class CrashableObject extends Component {
         let carBottom = parseInt(car.style.bottom.split("px")[0]);
         let carRight = carLeft + 40;
         let carTop = carBottom + 80;
-        let a;
 
         if ( carTop < obsBottom || carLeft > obsRight || carRight < obsLeft || carBottom > obsTop) 
-            a = '';
+            console.log('no crash')
         else {
             this.props.crashed();
             obj.style.display = "none";
