@@ -70,6 +70,7 @@ export default class MainMenu extends Component{
                         <p> <strong>The purpose of this app is to    spread awareness</strong> to users by letting them experience how much harder it is to control a moving vehicle when a person's reaction and senses are impaired.</p>
                         <p>Capstone project for BrainStation - Web Development Winter 2020</p>
                         <p>Made using <strong>React</strong> and <strong>Sass</strong></p>
+                        <p>Check out my portfolio here: <a href="https://johnraymartinez.netlify.com" target="_blank" without rel="noopener noreferrer">Link to portfolio site</a></p> 
                     </div>
                 </div>
             </>) 
