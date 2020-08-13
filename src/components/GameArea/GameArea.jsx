@@ -140,7 +140,7 @@ export default class GameArea extends Component {
             <div className="game-area" ref="gameArea">
                 { this.state.crashed && this.state.finalScore 
                     ?   <div className="game-area__overlay" ref="overlay">
-                            <div className={`game-area__container `} ref="container">
+                            <div className={`game-area__container ${this.state.crashed && this.state.finalScore ? 'game-area__container--game-over' : ''}`} ref="container">
                                 <h2 className="game-area__text">Score: {this.state.finalScore}</h2>
                                 <span 
                                   className="game-area__highscore-button"

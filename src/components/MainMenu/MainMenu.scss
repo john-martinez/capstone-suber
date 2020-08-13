@@ -7,14 +7,14 @@
     background-color: rgba(255,255,255,0.7);
     padding: 15px;
     border-radius: 5px;
-    width: 85%;
+    min-width: 55%;
     max-height: 95%;
     overflow: auto;
 
+    // @media screen and (max-width:1200px) {
+    //     width: 90%;
+    // }
     &--main-menu { max-width: 550px; height: auto }
-    @media screen and (max-width:1200px) {
-        width: 90%;
-    }
 
     @media screen and (max-width:768px) {
         width: 95%;
