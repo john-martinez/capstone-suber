@@ -8,7 +8,7 @@
     padding: 15px;
     border-radius: 5px;
     width: 85%;
-    height: 95%;
+    max-height: 95%;
     overflow: auto;
 
     &--main-menu { max-width: 550px; height: auto }
